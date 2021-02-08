@@ -46,4 +46,4 @@ testing_3 = PythonOperator(
  python_callable = print_test, 
  dag = dag)
 #setting up dependencies. hello_task_2 will run after the successful #run of dummy_task_1
-dummy_task_1 >> hello_task_2
+dummy_task_1 >> hello_task_2 >> testing_3
