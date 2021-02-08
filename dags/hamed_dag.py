@@ -27,6 +27,9 @@ schedule_interval = timedelta(days = 1)
 )
 def print_hello():
     return ("Hello world!")
+
+def print_test():
+    return ("testing")
 #dummy_task_1 and hello_task_2 are examples of tasks created by #instantiating operators
 #Tasks are generated when instantiating operator objects. An object #instantiated from an operator is called a constructor. The first #argument task_id acts as a unique identifier for the task.
 #A task must include or inherit the arguments task_id and owner, #otherwise Airflow will raise an exception
@@ -37,6 +40,10 @@ dummy_task_1 = DummyOperator(
 hello_task_2 = PythonOperator(
  task_id = 'hello_task', 
  python_callable = print_hello, 
+ dag = dag)
+testing_3 = PythonOperator(
+ task_id = 'testing_task', 
+ python_callable = print_test, 
  dag = dag)
 #setting up dependencies. hello_task_2 will run after the successful #run of dummy_task_1
 dummy_task_1 >> hello_task_2
