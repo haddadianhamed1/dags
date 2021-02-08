@@ -3,6 +3,10 @@ import logging
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
+
+def hello_world():
+    logging.info("Hello World")
+    
 hello_dag = DAG(
         "lesson1.excercise1",
         start_date=datetime.datetime.now(),
@@ -13,5 +17,3 @@ hello_task = PythonOperator(
         python_callable=hello_world,
         dag=hello_dag)
 
-def hello_world():
-    logging.info("Hello World")
