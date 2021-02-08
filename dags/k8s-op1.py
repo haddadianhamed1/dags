@@ -6,7 +6,7 @@ from airflow.operators.dummy_operator import DummyOperator
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime.utcnow(),
+    'start_date': days_ago(2),
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -17,7 +17,7 @@ default_args = {
 dag = DAG(
     'kubernetes_hamed', 
     default_args=default_args, 
-    schedule_interval=timedelta(minutes=10))
+    schedule_interval=timedelta(days = 1))
 
 
 dummy_task_1 = DummyOperator(task_id='start', dag=dag)
