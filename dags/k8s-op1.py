@@ -15,31 +15,29 @@ default_args = {
 }
 
 dag = DAG(
-    'kubernetes_hello', 
+    'kubernetes_hamed', 
     default_args=default_args, 
     schedule_interval=timedelta(minutes=10))
 
 
-start = DummyOperator(task_id='start', dag=dag)
+dummy_task_1 = DummyOperator(task_id='start', dag=dag)
 
-passing = KubernetesPodOperator(namespace='default',
+hello_task_2 = KubernetesPodOperator(namespace='default',
                           image="python:3.6",
                           cmds=["python","-c"],
-                          arguments=["print('hello world')"],
+                          arguments=["print('hello, hi hi hi hi world')"],
                           labels={"foo": "bar"},
-                          name="passing-test",
-                          task_id="passing-task",
+                          task_id="hello-task",
                           get_logs=True,
                           dag=dag
                           )
 
-failing = KubernetesPodOperator(namespace='default',
+testing_3 = KubernetesPodOperator(namespace='default',
                           image="ubuntu:16.04",
                           cmds=["python","-c"],
                           arguments=["print('hello world')"],
                           labels={"foo": "bar"},
-                          name="fail",
-                          task_id="failing-task",
+                          task_id="testing-task",
                           get_logs=True,
                           dag=dag
                           )
@@ -47,4 +45,4 @@ failing = KubernetesPodOperator(namespace='default',
 end = DummyOperator(task_id='end', dag=dag)
 
 
-start >> passing >> end
+dummy_task_1 >> hello_task_2 >> testing_3
