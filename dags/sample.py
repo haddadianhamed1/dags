@@ -20,7 +20,7 @@ dag = DAG(
 
 start = DummyOperator(task_id='start', dag=dag)
 
-passing = KubernetesPodOperator(namespace='hamed',
+passing = KubernetesPodOperator(namespace='hamed-final',
                           image="python:3.6",
                           cmds=["python","-c"],
                           arguments=["print('hello world')"],
@@ -31,7 +31,7 @@ passing = KubernetesPodOperator(namespace='hamed',
                           dag=dag
                           )
 
-failing = KubernetesPodOperator(namespace='hamed',
+failing = KubernetesPodOperator(namespace='hamed-final',
                           image="ubuntu:16.04",
                           cmds=["python","-c"],
                           arguments=["print('hello world')"],
