@@ -15,7 +15,7 @@ default_args = {
 }
 
 dag = DAG(
-    'kubernetes_hello_world1', 
+    'kubernetes_hello', 
     default_args=default_args, 
     schedule_interval=timedelta(minutes=10))
 
