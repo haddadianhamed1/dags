@@ -6,7 +6,7 @@ from airflow import DAG
 #importing the operators required
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 #these args will get passed to each operator
 #these can be overridden on a per-task basis during operator #initialization
