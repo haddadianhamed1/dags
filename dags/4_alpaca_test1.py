@@ -24,15 +24,18 @@ example_workflow = DAG('alpaca_test_1',
                          tags=['example'])
 
 with example_workflow:
+
+        start = DummyOperator(task_id='run_this_first')
+
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
                                image="hhaddadian/alpaca:v0.1.0",
                                arguments=["python -c 'import app;app.print_account()'"],
                                labels={'runner': 'airflow'},
                                name="airflow-test-pod",
-                               image_pull_secrets=[k8s.V1LocalObjectReference('regcred')],
+                               image_pull_secrets="regcred",
                                task_id='pod1',
                                is_delete_operator_pod=False,
                                hostnetwork=False,
                                priority_class_name="medium",
                                )
-        t1 
+        start >> t1 
