@@ -29,7 +29,8 @@ with example_workflow:
 
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
                                image="hhaddadian/alpaca:v0.1.0",
-                               cmds=["python -c 'import app;app.print_account()'"],
+                               cmds=["python", "-c"],
+                               arguments=["import app", "app.print_account()"],
                                labels={'runner': 'airflow'},
                                name="airflow-test-pod",
                                image_pull_secrets="regcred",
