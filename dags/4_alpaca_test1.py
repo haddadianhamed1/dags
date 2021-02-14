@@ -16,7 +16,8 @@ from kubernetes.client import models as k8s
 default_args = {
     'owner': 'airflow',
 }
-
+def run_this_func(**kwargs):
+    print(kwargs['conf'])
 example_workflow = DAG('alpaca_test_1',
                          default_args=default_args,
                          schedule_interval=None,
@@ -39,4 +40,10 @@ with example_workflow:
                                hostnetwork=False,
                                priority_class_name="medium",
                                )
-        start >> t1 
+
+
+        print_conf = PythonOperator(task_id='run_this',
+            python_callable=run_this_func,
+            provide_context=True,
+        )                       
+        start >> t1 >> print_conf
