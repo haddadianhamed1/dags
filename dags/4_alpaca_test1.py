@@ -28,9 +28,9 @@ with example_workflow:
         start = DummyOperator(task_id='run_this_first')
 
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="hhaddadian/alpaca:v0.1.0",
-                               cmds=["python", "-c"],
-                               arguments=["import app", "app.print_account()"],
+                               image="hhaddadian/alpaca:v0.1.1",
+                               cmds=["python",],
+                               arguments=["1_print_account.py"],
                                labels={'runner': 'airflow'},
                                name="airflow-test-pod",
                                image_pull_secrets="regcred",

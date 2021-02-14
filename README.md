@@ -9,3 +9,6 @@ airflow.operators.sql_operator- executes sql code in a specific Microsoft SQL da
 airflow.operators.slack_operator.SlackAPIOperator- posts messages to a slack channel
 airflow.operators.dummy_operator- operator that does literally nothing. It can be used to group tasks in a DAG
 ```
+
+
+https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/_modules/airflow/providers/cncf/kubernetes/example_dags/example_kubernetes.html
