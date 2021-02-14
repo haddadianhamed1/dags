@@ -25,7 +25,6 @@ with DAG(
     k = KubernetesPodOperator(
         namespace='airflow-alpaca',
         image="ubuntu:16.04",
-        cmds=["bash", "-cx"],
         arguments=["echo", "Hi Hamed"],
         labels={"foo": "bar"},
         name="airflow-test-pod",
