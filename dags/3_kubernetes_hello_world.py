@@ -26,11 +26,11 @@ with DAG(
         namespace='airflow-alpaca',
         image="ubuntu:16.04",
         cmds=["bash", "-cx"],
-        arguments=["echo", "10"],
+        arguments=["echo", "Hi Hamed"],
         labels={"foo": "bar"},
         name="airflow-test-pod",
         task_id="task",
-        is_delete_operator_pod=True,
+        is_delete_operator_pod=False,
         hostnetwork=False,
         priority_class_name="medium",
     )
