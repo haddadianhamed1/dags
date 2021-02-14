@@ -23,22 +23,14 @@ with DAG(
     tags=['example'],
 ) as dag:
     k = KubernetesPodOperator(
-        namespace='default',
+        namespace='airflow-alpaca',
         image="ubuntu:16.04",
         cmds=["bash", "-cx"],
         arguments=["echo", "10"],
         labels={"foo": "bar"},
-        secrets=[secret_file, secret_env, secret_all_keys],
-        ports=[port],
-        volumes=[volume],
-        volume_mounts=[volume_mount],
-        env_from=configmaps,
         name="airflow-test-pod",
         task_id="task",
-        affinity=affinity,
         is_delete_operator_pod=True,
         hostnetwork=False,
-        tolerations=tolerations,
-        init_containers=[init_container],
         priority_class_name="medium",
     )
