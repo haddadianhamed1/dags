@@ -58,7 +58,7 @@ with example_workflow:
                                 labels={'runner': 'airflow'},
                                 name="pod4",
                                 task_id='pod4',
-                                is_delete_operator_pod=True,
+                                is_delete_operator_pod=False,
                                 hostnetwork=False,
                                 )
         t1 >> [t2, t3] >> t4
