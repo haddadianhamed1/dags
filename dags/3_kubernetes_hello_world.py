@@ -15,21 +15,50 @@ default_args = {
     'owner': 'airflow',
 }
 
-with DAG(
-    dag_id='example_kubernetes_operator',
-    default_args=default_args,
-    schedule_interval=None,
-    start_date=days_ago(2),
-    tags=['example'],
-) as dag:
-    k = KubernetesPodOperator(
-        namespace='airflow-alpaca',
-        image="ubuntu:16.04",
-        arguments=["echo", "Hi Hamed"],
-        labels={"foo": "bar"},
-        name="airflow-test-pod",
-        task_id="task",
-        is_delete_operator_pod=False,
-        hostnetwork=False,
-        priority_class_name="medium",
-    )
+example_workflow = DAG('example_kubernetes_operator',
+                         default_args=default_args,
+                         schedule_interval=None,
+                         start_date=days_ago(2),
+                         tags=['example'])
+
+with example_workflow:
+        t1 = KubernetesPodOperator(namespace='airflow-alpaca',
+                               image="ubuntu:16.04",
+                               arguments=["echo", "hello world"],
+                               labels={'runner': 'airflow'},
+                               name="airflow-test-pod",
+                               task_id='pod1',
+                               is_delete_operator_pod=False,
+                               hostnetwork=False,
+                               priority_class_name="medium",
+                               )
+        t2 = KubernetesPodOperator(namespace='airflow-alpaca',
+                                image="ubuntu:16.04",
+                                arguments=["echo", "hello world2"],
+                                labels={'runner': 'airflow'},
+                                name="pod2",
+                                task_id='pod2',
+                                is_delete_operator_pod=False,
+                                hostnetwork=False,
+                                )
+
+        t3 = KubernetesPodOperator(namespace='airflow-alpaca',
+                                image="ubuntu:16.04",
+                                arguments=["echo", "hello world3"],
+                                labels={'runner': 'airflow'},
+                                name="pod3",
+                                task_id='pod3',
+                                is_delete_operator_pod=False,
+                                hostnetwork=False,
+                                )                               
+
+        t4 = KubernetesPodOperator(namespace='airflow-alpaca',
+                                image="ubuntu:16.04",
+                                arguments=["echo", "hello world4"],
+                                labels={'runner': 'airflow'},
+                                name="pod4",
+                                task_id='pod4',
+                                is_delete_operator_pod=True,
+                                hostnetwork=False,
+                                )
+        t1 >> [t2, t3] >> t4
