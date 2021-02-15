@@ -10,12 +10,15 @@ from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOpera
 
 from kubernetes.client import models as k8s
 
+import os
+
 default_args = {
     'owner': 'airflow',
 }
 def run_this_func(ds, **kwargs):
-    print("Remotely received value of {} for key=message".
-          format(kwargs['dag_runs']))
+    print(os.environ)
+    # print("Remotely received value of {} for key=message".
+    #       format(kwargs['dag_runs']))
 
 
 example_workflow = DAG('print_env',
