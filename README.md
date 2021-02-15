@@ -12,3 +12,17 @@ airflow.operators.dummy_operator- operator that does literally nothing. It can b
 
 
 https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/_modules/airflow/providers/cncf/kubernetes/example_dags/example_kubernetes.html
+
+
+# call dags externally
+```
+curl -X POST \
+    http://localhost:8080/api/experimental/dags/print_env/dag_runs \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/json' \
+    -d '{"conf":"{\"key\":\"hamed\"}"}'
+
+```
+```
+airflow trigger_dag print_env --conf '{"key":"hamed" }'
+```
