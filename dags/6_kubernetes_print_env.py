@@ -26,7 +26,7 @@ with example_workflow:
         start = DummyOperator(task_id='run_this_first')
 
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="hhaddadian/alpaca:v0.3.0",
+                               image="hhaddadian/alpaca:v0.3.1",
                                cmds=["python",],
                                arguments=["0_print_context.py"],
                                labels={'runner': 'airflow'},
@@ -35,5 +35,4 @@ with example_workflow:
                                task_id='pod1',
                                is_delete_operator_pod=False,
                                hostnetwork=False,
-                               provide_context=True,
                                )
