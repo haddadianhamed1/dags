@@ -28,7 +28,7 @@ with example_workflow:
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
                                image="hhaddadian/alpaca:v0.3.2",
                                cmds=["python",],
-                               arguments=["0_print_context.py", 'hamed'],
+                               arguments=["0_print_context.py", {{ dag_run.conf["parameter"] if dag_run else "" }}],
                                labels={'runner': 'airflow'},
                                name="airflow-env-pod",
                                image_pull_secrets="regcred",
