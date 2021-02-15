@@ -36,3 +36,5 @@ with example_workflow:
             python_callable=run_this_func,
             provide_context=True,
         )            
+
+        print_conf >> print_conf2
