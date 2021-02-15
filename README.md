@@ -31,7 +31,7 @@ airflow trigger_dag k8s_print_env --conf '{"arguments":{"TEST_VAR":"hamed"}}'
 airflow trigger_dag k8s_print_env --conf '{"arguments":["hamed"]}'
 
 
- airflow trigger_dag k8s_print_env --conf '{"parameter":"~/path" }'
+airflow trigger_dag k8s_print_env --conf '{"parameter":"~/path" }'
 
 ```
 https://stackoverflow.com/questions/44363243/airflow-pass-parameter-from-cli
