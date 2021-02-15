@@ -15,6 +15,7 @@ from kubernetes.client import models as k8s
 default_args = {
     'owner': 'airflow',
 }
+# airflow trigger_dag k8s_print_env --conf '{"parameter":"~/path" }'
 param = "{{dag_run.conf.get('parameter')}}"
 
 example_workflow = DAG('k8s_print_env',
@@ -27,7 +28,7 @@ with example_workflow:
         start = DummyOperator(task_id='run_this_first')
 
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="hhaddadian/alpaca:v0.3.2",
+                               image="hhaddadian/alpaca:v0.3.3",
                                cmds=["python",],
                                arguments=["0_print_context.py", param],
                                labels={'runner': 'airflow'},
