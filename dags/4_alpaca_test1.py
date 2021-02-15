@@ -18,6 +18,7 @@ default_args = {
 }
 def run_this_func(**kwargs):
     print(kwargs['conf'])
+    
 example_workflow = DAG('alpaca_test_1',
                          default_args=default_args,
                          schedule_interval=None,
