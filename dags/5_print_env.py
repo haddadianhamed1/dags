@@ -32,3 +32,7 @@ with example_workflow:
             python_callable=run_this_func,
             provide_context=True,
         )         
+        print_conf2 = PythonOperator(task_id='run_this2',
+            python_callable=run_this_func,
+            provide_context=True,
+        )            
