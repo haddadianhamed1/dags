@@ -13,9 +13,10 @@ from kubernetes.client import models as k8s
 default_args = {
     'owner': 'airflow',
 }
-def run_this_func(**context):
-    print("hello hello")
-    print("context", context)
+def run_this_func(ds, **kwargs):
+    print("Remotely received value of {} for key=message".
+          format(kwargs['dag_run'].conf['message']))
+
 
 example_workflow = DAG('print_env',
                          default_args=default_args,
