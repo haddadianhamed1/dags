@@ -15,9 +15,9 @@ import os
 default_args = {
     'owner': 'airflow',
 }
-def run_this_func(**kwargs):
-    print("Remotely received value of {} for key=message".
-          format(kwargs['dag_run'].conf.get('key')))
+def run_this_func(**context):
+    print("context", context)
+    print("Remotely received value of {} for key=message".format(context["dag_run"].conf["key"]))
 
 
 example_workflow = DAG('print_env',
