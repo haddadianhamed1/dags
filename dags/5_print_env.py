@@ -14,6 +14,7 @@ default_args = {
     'owner': 'airflow',
 }
 def run_this_func(**kwargs):
+    print("hello hello")
     print(kwargs['conf'])
 
 example_workflow = DAG('print_env',
