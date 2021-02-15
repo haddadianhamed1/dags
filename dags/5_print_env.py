@@ -17,7 +17,7 @@ default_args = {
 }
 def run_this_func(ds, **kwargs):
     print("Remotely received value of {} for key=message".
-          format(kwargs['dag_run'].conf['message']))
+          format(kwargs['dag_run'].conf.get('key')))
 
 
 example_workflow = DAG('print_env',
