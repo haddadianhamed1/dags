@@ -13,9 +13,9 @@ from kubernetes.client import models as k8s
 default_args = {
     'owner': 'airflow',
 }
-def run_this_func(**kwargs):
+def run_this_func(**context):
     print("hello hello")
-    print(kwargs['conf'])
+    print("context", context)
 
 example_workflow = DAG('print_env',
                          default_args=default_args,
