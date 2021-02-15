@@ -11,6 +11,7 @@ from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOpera
 from kubernetes.client import models as k8s
 
 
+
 default_args = {
     'owner': 'airflow',
 }
@@ -34,4 +35,5 @@ with example_workflow:
                                task_id='pod1',
                                is_delete_operator_pod=False,
                                hostnetwork=False,
+                               provide_context=True,
                                )
