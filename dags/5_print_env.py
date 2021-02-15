@@ -15,7 +15,7 @@ import os
 default_args = {
     'owner': 'airflow',
 }
-def run_this_func(ds, **kwargs):
+def run_this_func(**kwargs):
     print("Remotely received value of {} for key=message".
           format(kwargs['dag_run'].conf.get('key')))
 
