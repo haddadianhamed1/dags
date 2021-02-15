@@ -17,11 +17,16 @@ https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/
 # call dags externally
 ```
 curl -X POST \
+    http://localhost:8080/api/experimental/dags/k8s_print_env/dag_runs \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/json' \
+    -d '{"conf":"{\"parameter\":\"hamed\"}"}'
+
+curl -X POST \
     http://localhost:8080/api/experimental/dags/print_env/dag_runs \
     -H 'Cache-Control: no-cache' \
     -H 'Content-Type: application/json' \
     -d '{"conf":"{\"key\":\"hamed\"}"}'
-
 ```
 ```
 airflow trigger_dag print_env --conf '{"key":"hamed" }'
@@ -31,7 +36,10 @@ airflow trigger_dag k8s_print_env --conf '{"arguments":{"TEST_VAR":"hamed"}}'
 airflow trigger_dag k8s_print_env --conf '{"arguments":["hamed"]}'
 
 
-airflow trigger_dag k8s_print_env --conf '{"parameter":"~/path" }'
+airflow trigger_dag k8s_print_env --conf '{"parameter":"AAPL,100" }'
+```
 
+# passing params
 ```
 https://stackoverflow.com/questions/44363243/airflow-pass-parameter-from-cli
+```
