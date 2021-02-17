@@ -37,9 +37,20 @@ airflow trigger_dag k8s_print_env --conf '{"arguments":["hamed"]}'
 
 
 airflow trigger_dag k8s_print_env --conf '{"parameter":"AAPL,100" }'
+airflow trigger_dag purchase --conf '{"parameter":"AAPL,1" }'
+
+airflow trigger_dag purchase --conf '{"parameter":"AAPL,1"}'
+airflow trigger_dag purchase --conf '{"parameter":"AAPL,2"}'
+airflow trigger_dag purchase --conf '{"parameter":"FB,1"}'
+airflow trigger_dag purchase --conf '{"parameter":"ITRM,1"}'
 ```
 
 # passing params
 ```
 https://stackoverflow.com/questions/44363243/airflow-pass-parameter-from-cli
+```
+
+# xcom pull
+```
+https://www.aylakhan.tech/?p=725
 ```
