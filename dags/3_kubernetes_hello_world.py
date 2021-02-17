@@ -30,7 +30,6 @@ with example_workflow:
                                task_id='pod1',
                                is_delete_operator_pod=False,
                                hostnetwork=False,
-                               priority_class_name="medium",
                                )
         t2 = KubernetesPodOperator(namespace='airflow-alpaca',
                                 image="ubuntu:16.04",
