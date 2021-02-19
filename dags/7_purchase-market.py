@@ -18,17 +18,17 @@ default_args = {
 # airflow trigger_dag k8s_print_env --conf '{"parameter":"~/path" }'
 param = "{{dag_run.conf.get('parameter')}}"
 
-example_workflow = DAG('purchase',
+example_workflow = DAG('purchase-market',
                          default_args=default_args,
                          schedule_interval=None,
                          start_date=days_ago(2),
-                         tags=['purchase'])
+                         tags=['purchase-market'])
 
 with example_workflow:
         start = DummyOperator(task_id='run_this_first')
 
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.2",
+                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.3",
                                cmds=["python",],
                                arguments=["0_print_context.py", param],
                                labels={'runner': 'airflow'},
@@ -39,9 +39,9 @@ with example_workflow:
                                hostnetwork=False,
                                )
         t2 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.2",
+                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.3",
                                cmds=["python",],
-                               arguments=["2_submit_order.py", param],
+                               arguments=["2_submit_order_market.py", param],
                                labels={'runner': 'airflow'},
                                name="airflow-purchase-pod",
                                image_pull_secrets="regcred",

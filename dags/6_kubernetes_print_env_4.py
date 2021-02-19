@@ -26,7 +26,7 @@ example_workflow = DAG('k8s_print_env_4',
 
 with example_workflow:
         t1 = KubernetesPodOperator(namespace='airflow-alpaca',
-                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.2",
+                               image="018025508913.dkr.ecr.us-east-1.amazonaws.com/airflow-alpaca:v0.4.3",
                                cmds=["python",],
                                arguments=["0_print_context.py", param],
                                labels={'runner': 'airflow'},
