@@ -245,16 +245,16 @@ scheduler:
     type: aws
     extra: |
       {
-        "aws_access_key_id": "AKIAQIMTHOAY4P43CQ5U",
-        "aws_secret_access_key": "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",
+        "aws_access_key_id": "xxxxx",
+        "aws_secret_access_key": "xxxxx+xxxxx",
         "region_name":"us-east-1"
       }
   - id: s3_logging
     type: s3
     extra: |
       {
-        "aws_access_key_id": "AKIAQIMTHOAY4P43CQ5U",
-        "aws_secret_access_key": "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",
+        "aws_access_key_id": "xxxxx",
+        "aws_secret_access_key": "xxxx+xxxx",
         "region_name":"us-east-1"
       }
   ## custom airflow variables for the airflow scheduler
